@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+        <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+        <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+        <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../static/styles.css">
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+     <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg ">
+        <a class="text-success font-weight-bold text-uppercase navbar-brand" href="{{url_for('index')}}">Carbon ESG</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('index')}}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('about')}}">About</a>
+            </li>
+
+          </ul>
+        </div>
+    </nav>
+    
+        <div class="grey-bg container-fluid">
+        <section id="minimal-statistics">
+            <div class="row">
+            <div class="col-12 mt-3 mb-1">
+                <a href="{{url_for('index')}}" class="float-right btn btn-primary btn-lg" role="button" aria-disabled="false">Get another report</a>
+                <h4 class="text-uppercase">Company ESG Factsheet</h4><h2 class="font-weight-bold">{{quote.info['shortName']}}</h2>
+                <div class="">
+                    <p>Industry Group: {{quote.info['industry']}}</p>
+                    <p>Country/Region: {{quote.info['country']}}</p>
+                    <p class="small">{{quote.info['longBusinessSummary']}}</p>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-xl-3 col-sm-6 col-12"> 
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="align-self-center">
+                        <i class="icon-chemistry primary font-large-2 float-left"></i>
+                        </div>
+                        <div class="media-body text-right">
+                        {% if quote.sustainability.Value['palmOil'] == True %}
+                            <h3>Yes</h3>
+                        {% elif quote.sustainability.Value['palmOil'] == None %}
+                            <h3>No record</h3>
+                        {% else %}
+                            <h3>No</h3>
+                        {% endif %}
+                        <span>Palm Oil</span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="align-self-center">
+                        <i class="icon-dislike warning font-large-2 float-left"></i>
+                        </div>
+                        <div class="media-body text-right">
+                        {% if quote.sustainability.Value['controversialWeapons'] == True %}
+                            <h3>Yes</h3>
+                        {% elif quote.sustainability.Value['controversialWeapons'] == None %}
+                            <h3>No record</h3>
+                        {% else %}
+                            <h3>No</h3>
+                        {% endif %}
+
+                        <span>Controversial Weapons</span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="align-self-center">
+                        <i class="icon-graph success font-large-2 float-left"></i>
+                        </div>
+                        <div class="media-body text-right">
+                        {% if quote.sustainability.Value['gambling'] == True %}
+                            <h3>Yes</h3>
+                        {% elif quote.sustainability.Value['gambling'] == None %}
+                            <h3>No record</h3>
+                        {% else %}
+                            <h3>No</h3>
+                        {% endif %}
+
+                        <span>Gambling</span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="align-self-center">
+                        <i class="icon-size-actual danger font-large-2 float-left"></i>
+                        </div>
+                        <div class="media-body text-right">
+                        {% if quote.sustainability.Value['nuclear'] == True %}
+                            <h3>Yes</h3>
+                        {% elif quote.sustainability.Value['nuclear'] == None %}
+                            <h3>No record</h3>
+                        {% else %}
+                            <h3>No</h3>
+                        {% endif %}
+
+                        <span>Nuclear</span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        
+            <div class="row">
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="media-body text-left">
+                        {% if quote.sustainability.Value['militaryContract'] == True %}
+                            <h3>Yes</h3>
+                        {% elif quote.sustainability.Value['militaryContract'] == None %}
+                            <h3>No record</h3>
+                        {% else %}
+                            <h3>No</h3>
+                        {% endif %}
+
+                        <span>Military Contracts</span>
+                        </div>
+                        <div class="align-self-center">
+                        <i class="icon-rocket danger font-large-2 float-right"></i>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="media-body text-left">
+                        {% if quote.sustainability.Value['animalTesting'] == True %}
+                            <h3>Yes</h3>
+                        {% elif quote.sustainability.Value['animalTesting'] == None %}
+                            <h3>No record</h3>
+                        {% else %}
+                            <h3>No</h3>
+                        {% endif %}
+
+                        <span>Animal Testing</span>
+                        </div>
+                        <div class="align-self-center">
+                        <i class="icon-social-twitter success font-large-2 float-right"></i>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="media-body text-left">
+                        {% if quote.sustainability.Value['coal'] == True %}
+                            <h3>Yes</h3>
+                        {% elif quote.sustainability.Value['coal'] == None %}
+                            <h3>No record</h3>
+                        {% else %}
+                            <h3>No</h3>
+                        {% endif %}
+
+                        <span>Coal</span>
+                        </div>
+                        <div class="align-self-center">
+                        <i class="icon-fire warning font-large-2 float-right"></i>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="media-body text-left">
+                        {% if quote.sustainability.Value['pesticides'] == True %}
+                            <h3>Yes</h3>
+                        {% elif quote.sustainability.Value['pesticides'] == None %}
+                            <h3>No record</h3>
+                        {% else %}
+                            <h3>No</h3>
+                        {% endif %}
+
+                        <span>Pesticides</span>
+                        </div>
+                        <div class="align-self-center">
+                        <i class="icon-ban primary font-large-2 float-right"></i>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        
+            <div class="row">
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="media-body text-left">
+                        <h3 class="primary">{{quote.sustainability.Value['socialScore']}}</h3>
+                        <span>Social Score</span>
+                        </div>
+                        <div class="align-self-center">
+                        <i class="icon-users primary font-large-2 float-right"></i>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 mb-0" style="height: 7px;">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{quote.sustainability.Value['socialScore']}}%" aria-valuenow="{{quote.sustainability.Value['socialScore']}}" aria-valuemin="0" aria-valuemax="40"></div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="media-body text-left">
+                        <h3 class="warning">{{quote.sustainability.Value['environmentScore']}}</h3>
+                        <span>Environment Score</span>
+                        </div>
+                        <div class="align-self-center">
+                        <i class="icon-bubbles warning font-large-2 float-right"></i>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 mb-0" style="height: 7px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{quote.sustainability.Value['environmentScore']}}%" aria-valuenow="{{quote.sustainability.Value['environmentScore']}}" aria-valuemin="0" aria-valuemax="40"></div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="media-body text-left">
+                        <h3 class="success">{{quote.sustainability.Value['governanceScore']}}</h3>
+                        <span>Governance Score</span>
+                        </div>
+                        <div class="align-self-center">
+                        <i class="icon-pie-chart success font-large-2 float-right"></i>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 mb-0" style="height: 7px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{quote.sustainability.Value['governanceScore']}}%" aria-valuenow="{{quote.sustainability.Value['governanceScore']}}" aria-valuemin="0" aria-valuemax="40"></div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                    <div class="media d-flex">
+                        <div class="media-body text-left">
+                        <h3 class="danger">{{quote.sustainability.Value['totalEsg']}}</h3>
+                        <span>Total ESG</span>
+                        </div>
+                        <div class="align-self-center">
+                        <i class="icon-direction danger font-large-2 float-right"></i>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 mb-0" style="height: 7px;">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{quote.sustainability.Value['totalEsg']}}%" aria-valuenow="{{quote.sustainability.Value['totalEsg']}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        
+        <section id="stats-subtitle">
+        <div class="row">
+            <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Overall ESG rating</h4>
+            <p>Investment recommendation based on rating.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-md-12">
+            <div class="card overflow-hidden">
+                <div class="card-content">
+                <div class="card-body cleartfix">
+                    <div class="media align-items-stretch">
+                    <div class="align-self-center">
+                        <i class="icon-star primary font-large-2 mr-2"></i>
+                    </div>
+                    <div class="media-body">
+                        <h4>ESG Performance</h4>
+                        <span>Overall ESG performace</span>
+                    </div>
+                    <div class="align-self-center">
+                        {% if "LAG_PERF" in quote.sustainability.Value['esgPerformance'] %}
+                            <h1>Laging performace</h1>
+                        {% elif "UNDER_PERF" in quote.sustainability.Value['esgPerformance'] %}
+                            <h1>Under performace</h1>
+                        {% elif "AVG_PERF" in quote.sustainability.Value['esgPerformance'] %}
+                            <h1>Average performace</h1>
+                        {% elif "OUT_PERF" in quote.sustainability.Value['esgPerformance'] %}
+                            <h1>Outstanding performace</h1>
+                        {% else %}
+                            <h1>Good performace</h1>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-xl-6 col-md-12">
+            <div class="card">
+                <div class="card-content">
+                <div class="card-body cleartfix">
+                    <div class="media align-items-stretch">
+                    <div class="align-self-center">
+                        <i class="icon-speech warning font-large-2 mr-2"></i>
+                    </div>
+                    <div class="media-body">
+                        <h4>Recommendation</h4>
+                        <span>Recommendation for {{quote.info['shortName']}}</span>
+                    </div>
+                    <div class="align-self-center"> 
+                        {% if quote.sustainability.Value['esgPerformance'] in ["LAG_PERF", "UNDER_PERF"] %}
+                            <h3>Not recommended for ESG investment</h3>                        
+                        {% elif "AVG_PERF" in quote.sustainability.Value['esgPerformance'] %}
+                            <h3>ESG compliant but needs improvement</h3>
+                        {% elif "OUT_PERF" in quote.sustainability.Value['esgPerformance'] %}
+                            <h3>Highly recommended for ESG investment</h3>
+                        {% else %}
+                            <h3>Recommended for ESG investment</h3>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-xl-6 col-md-12">
+            <div class="card">
+                <div class="card-content">
+                <div class="card-body cleartfix">
+                    <div class="media align-items-stretch">
+                    <div class="align-self-center">
+                        <h1 class="mr-2">$76,456.00</h1>
+                    </div>
+                    <div class="media-body">
+                        <h4>Total Sales</h4>
+                        <span>Monthly Sales Amount</span>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="icon-heart danger font-large-2"></i>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-xl-6 col-md-12">
+            <div class="card">
+                <div class="card-content">
+                <div class="card-body cleartfix">
+                    <div class="media align-items-stretch">
+                    <div class="align-self-center">
+                        <h1 class="mr-2">$36,000.00</h1>
+                    </div>
+                    <div class="media-body">
+                        <h4>Total Cost</h4>
+                        <span>Monthly Cost</span>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="icon-wallet success font-large-2"></i>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div> -->
+        </section>
+        <!-- Footer -->
+        <footer class="py-4 mt-5 mt-auto">
+            <div class="container">
+            
+            <p class="text-center mb-0"><a class="text-success text-center mb-0" href="https://github.com/devgithubs" target="_blank">Made by Arthur | 2023</a></p>
+            </div>
+        </footer>
+        </div>
+        <!-- Load Bootstrap 4 JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+    
+</html>

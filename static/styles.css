@@ -1,0 +1,32 @@
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev{
+    display:block;
+}
+
+.title {
+    color: rgb(47, 61, 25);
+}
+.carousel-item {
+    font-size: 2rem;
+    font-weight: 500; 
+}
+.carousel-control-next {
+    color: black;
+}
+.grey-bg {  
+    background-color: #F5F7FA;
+}
+.bg-white {
+    background-color: white;
+}
+/* .navbar-toggler {
+    background-color:rgb(12, 1, 1);
+} */
+/* .navbar-toggler-icon {
+    color: rgb(20, 16, 16);
+} */
+.navbar-toggler-icon {
+    background-image: url('https://mdbootstrap.com/img/svg/hamburger5.svg?color=f3e5f5');
+    background-color: #198754;
+  }
