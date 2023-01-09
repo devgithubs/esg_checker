@@ -32,21 +32,27 @@
     </nav>
     <div class="grey-bg jumbotron text-center">
       <h1 class="display-4">Hello, world!</h1>
-      <p class="lead">This app allows users to enter the Ticker of Stocks and Investment funds and check their ESG scores.</p>
-      <p>It encourages people to democratize decarbonization!</p>
-      <hr class="my-4">
-      <p>This project uses the popular open source library developed by Ran Aroussi <a href="https://pypi.org/project/yfinance/" class="badge badge-secondary">'yfinance'</a></p>
+      <p class="lead">This app enables investors to enter the Ticker of Stocks and Investment funds to check the company ESG scores.</p>
+      <p>It encourages people to <span class="font-italic font-weight-bold">democratize decarbonization!</span></p>
+      <hr class="my-2">
+      <p>This project uses the popular open source library developed by Ran Aroussi to download data from 'Yahoo Finance' API <a href="https://pypi.org/project/yfinance/" class="badge badge-secondary" target="_blank">'yfinance'</a></p>
+      <p>According to the library - After November 2019 the rating changed to a risk rating. A high ESG score signaled that a company has high ESG risk, meaning that a more sustainable company has a low ESG score.</p>
       <p class="lead">
         <a class="btn btn-primary btn-lg" href="{{url_for('index')}}" role="button">Get started</a>
       </p>
+      <hr class="my-2">
     </div>
-    
+    <div class="container text-center">
+      <blockquote class="blockquote">
+        <p class="mb-2 display-4">What is ESG?</p>
+        <p>Environmental, social, and corporate governance 'ESG' is a strategic framework for identifying, assessing, and addressing organizational objectives and activities ranging from the company's carbon footprint and commitment to sustainability, to its workplace culture and commitment to diversity.</p>
+      </blockquote>
+    </div>
 
     
     <!-- Footer -->
     <footer class=" py-4 mt-5 mt-auto">
       <div class="container">
-      
         <p class="text-center mb-0"><a class="text-success text-center mb-0" href="https://github.com/devgithubs" target="_blank">Made by Arthur | 2023</a></p>
       </div>
     </footer>

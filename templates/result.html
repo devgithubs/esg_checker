@@ -73,7 +73,7 @@
                     <div class="card-body">
                     <div class="media d-flex">
                         <div class="align-self-center">
-                        <i class="icon-dislike warning font-large-2 float-left"></i>
+                        <i class="icon-target warning font-large-2 float-left"></i>
                         </div>
                         <div class="media-body text-right">
                         {% if quote.sustainability.Value['controversialWeapons'] == True %}
@@ -248,8 +248,8 @@
                     <div class="card-body">
                     <div class="media d-flex">
                         <div class="media-body text-left">
-                        <h3 class="primary">{{quote.sustainability.Value['socialScore']}}</h3>
-                        <span>Social Score</span>
+                        <h3 class="primary">{{quote.sustainability.Value['socialScore'] | round}}</h3>
+                        <span>Social Risk Score</span>
                         </div>
                         <div class="align-self-center">
                         <i class="icon-users primary font-large-2 float-right"></i>
@@ -268,8 +268,8 @@
                     <div class="card-body">
                     <div class="media d-flex">
                         <div class="media-body text-left">
-                        <h3 class="warning">{{quote.sustainability.Value['environmentScore']}}</h3>
-                        <span>Environment Score</span>
+                        <h3 class="warning">{{quote.sustainability.Value['environmentScore'] | round}}</h3>
+                        <span>Environment Risk Score</span>
                         </div>
                         <div class="align-self-center">
                         <i class="icon-bubbles warning font-large-2 float-right"></i>
@@ -289,8 +289,8 @@
                     <div class="card-body">
                     <div class="media d-flex">
                         <div class="media-body text-left">
-                        <h3 class="success">{{quote.sustainability.Value['governanceScore']}}</h3>
-                        <span>Governance Score</span>
+                        <h3 class="success">{{quote.sustainability.Value['governanceScore'] | round}}</h3>
+                        <span>Governance Risk Score</span>
                         </div>
                         <div class="align-self-center">
                         <i class="icon-pie-chart success font-large-2 float-right"></i>
@@ -309,8 +309,8 @@
                     <div class="card-body">
                     <div class="media d-flex">
                         <div class="media-body text-left">
-                        <h3 class="danger">{{quote.sustainability.Value['totalEsg']}}</h3>
-                        <span>Total ESG</span>
+                        <h3 class="danger">{{ quote.sustainability.Value['totalEsg'] | round }}</h3>
+                        <span>Total Risk ESG</span>
                         </div>
                         <div class="align-self-center">
                         <i class="icon-direction danger font-large-2 float-right"></i>
@@ -349,15 +349,15 @@
                     </div>
                     <div class="align-self-center">
                         {% if "LAG_PERF" in quote.sustainability.Value['esgPerformance'] %}
-                            <h1>Laging performace</h1>
+                            <h1>ESG risk: <span class="badge badge-pill badge-success">Negligible</span></h1>
                         {% elif "UNDER_PERF" in quote.sustainability.Value['esgPerformance'] %}
-                            <h1>Under performace</h1>
+                            <h1>ESG risk: <span class="badge badge-pill badge-success">Low</span></h1>
                         {% elif "AVG_PERF" in quote.sustainability.Value['esgPerformance'] %}
-                            <h1>Average performace</h1>
+                            <h1>ESG risk: <span class="badge badge-pill badge-warning">Medium</span></h1>
                         {% elif "OUT_PERF" in quote.sustainability.Value['esgPerformance'] %}
-                            <h1>Outstanding performace</h1>
+                            <h1>ESG Risk: <span class="badge badge-pill badge-danger">High</span></h1>
                         {% else %}
-                            <h1>Good performace</h1>
+                            <h1>ESG Risk: <span class="badge badge-pill badge-danger">Severe</span></h1>
                         {% endif %}
                     </div>
                     </div>
@@ -379,12 +379,14 @@
                         <span>Recommendation for {{quote.info['shortName']}}</span>
                     </div>
                     <div class="align-self-center"> 
-                        {% if quote.sustainability.Value['esgPerformance'] in ["LAG_PERF", "UNDER_PERF"] %}
-                            <h3>Not recommended for ESG investment</h3>                        
+                        {% if quote.sustainability.Value['esgPerformance'] in ["LAG_PERF"] %}
+                            <h3>Highly recommended for ESG investment</h3>
                         {% elif "AVG_PERF" in quote.sustainability.Value['esgPerformance'] %}
                             <h3>ESG compliant but needs improvement</h3>
                         {% elif "OUT_PERF" in quote.sustainability.Value['esgPerformance'] %}
-                            <h3>Highly recommended for ESG investment</h3>
+                            <h3>Not recommended for ESG investment</h3>
+                        {% elif "LEAD_PERF" in quote.sustainability.Value['esgPerformance'] %}
+                            <h3>Not recommended for ESG investment</h3>
                         {% else %}
                             <h3>Recommended for ESG investment</h3>
                         {% endif %}
@@ -394,6 +396,36 @@
                 </div>
             </div>
             </div>
+            <div class="col-xl-6 col-md-12">
+                <div class="card overflow-hidden">
+                    <div class="card-content">
+                    <div class="card-body cleartfix">
+                        <div class="media align-items-stretch">
+                        <div class="align-self-center">
+                            <i class="icon-eye primary font-large-2 mr-2"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4>Controvery Level</h4>
+                            <span>Measure of the companies highest controversy level (0 - 5)</span>
+                        </div>
+                        <div class="align-self-center">
+                            {% if quote.sustainability.Value['highestControversy'] == 1 %}
+                                <h1>Very Low <span class="badge badge-pill badge-success">1 / 5</span></h1>
+                            {% elif quote.sustainability.Value['highestControversy'] == 2 %}
+                                <h1>Low <span class="badge badge-pill badge-success">2 / 5</span></h1>
+                            {% elif quote.sustainability.Value['highestControversy'] == 3 %}
+                                <h1>Significant <span class="badge badge-pill badge-warning">3 / 5</span></h1>
+                            {% elif quote.sustainability.Value['highestControversy'] == 4 %}
+                                <h1>High <span class="badge badge-pill badge-danger">4 / 5</span></h1>
+                            {% else %}
+                                <h1>Very high <span class="badge badge-pill badge-danger">5 / 5</span></h1>
+                            {% endif %}
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
         </div>
 
         <!-- <div class="row">
