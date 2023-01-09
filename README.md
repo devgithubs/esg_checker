@@ -1,0 +1,1 @@
+# This app enables investors to enter the Ticker of Stocks and Investment funds to check the company ESG scores.
